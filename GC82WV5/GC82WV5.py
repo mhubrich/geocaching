@@ -42,15 +42,15 @@ def print_answer(letters):
 
 if __name__ == '__main__':
     letters = {
-        'A': list(range(10)),
-        'B': list(range(10)),
-        'C': list(range(10)),
-        'D': list(range(10)),
-        'E': list(range(10)),
-        'F': list(range(10)),
-        'G': list(range(10)),
-        'H': list(range(10)),
-        'J': list(range(10))
+        'A': list(range(1, 10)),
+        'B': list(range(1, 10)),
+        'C': list(range(1, 10)),
+        'D': list(range(1, 10)),
+        'E': list(range(1, 10)),
+        'F': list(range(1, 10)),
+        'G': list(range(1, 10)),
+        'H': list(range(1, 10)),
+        'J': list(range(1, 10))
     }
     solution = solve(letters)
     print_answer(solution)
