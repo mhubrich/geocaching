@@ -33,7 +33,11 @@ def check_constraints(**letters):
 
 def print_answer(letters):
     """Given a dict of (letter, digit) pairs, prints the solution."""
-    pass
+    X = int(str(letters['H']) + str(letters['E']) + str(letters['J']))
+    X += int(str(letters['E']) + str(letters['F']) + str(letters['C']))
+    Y = int(str(letters['G']) + str(letters['A']) + str(letters['B']))
+    Y -= int(str(letters['J']) + str(letters['J']) + str(letters['D']))
+    print('The geocache is at N49 16.{X} W123 04.{Y}'.format(X=X, Y=Y))
 
 
 if __name__ == '__main__':
