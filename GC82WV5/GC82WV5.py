@@ -13,21 +13,33 @@
 # X = HEJ + EFC and                                         #
 # Y = GAB - JJD                                             #
 #############################################################
+import itertools
 
 
-def solve(letters):
+def solve():
     """
-    Uses a backtracking algorithm to find the solution to geocache GC82WV5.
-
-    Parameters:
-    letters (dict): Keys (strings A-J) and all possibile values (lists of ints 0-9).
+    Reduces the solution space to find a solution to geocache GC82WV5. In theory, there
+    are 10^9 different combinations of the digits 1-9. However, one constrain of the
+    problem is that all digits have to be unique. Therefore, by only considering
+    permutations of the digits 1-9 we can reduce the solution space drastically:
+    9! / 10^9 = 0.00036, i.e. 0.036% of all possible combinations.
 
     Returns:
-    solution (dict): Keys (strings A-J) with one int value each which satisy contraints.
-    """
-    pass
+    solution (dict): (letter, digit) mappgins which satisfy constraints.
 
-def check_constraints(**letters):
+    Raises:
+    ValueError: No solution could be found.
+    """
+    for digits in itertools.permutations(range(1, 10)):
+        if check_constraints(to_letters(digits)):
+            return to_letters(digits)
+    raise ValueError('No solution could be found.')
+
+def to_letters(digits):
+    """Returns a dict of letter-to-digit mappings."""
+    return dict(zip(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J'], digits))
+
+def check_constraints(letters):
     """Returns True if contraints are satisfied, False otherwise."""
     if letters['H'] * letters['H'] != letters['E']:
         return False
@@ -41,6 +53,8 @@ def check_constraints(**letters):
         return False
     if letters['D'] - letters['C'] != letters['J']:
         return False
+    if len(set(letters.values())) != len(letters):  # all digits need to be unique
+        return False
     return True
 
 def print_answer(letters):
@@ -53,16 +67,5 @@ def print_answer(letters):
 
 
 if __name__ == '__main__':
-    letters = {
-        'A': list(range(1, 10)),
-        'B': list(range(1, 10)),
-        'C': list(range(1, 10)),
-        'D': list(range(1, 10)),
-        'E': list(range(1, 10)),
-        'F': list(range(1, 10)),
-        'G': list(range(1, 10)),
-        'H': list(range(1, 10)),
-        'J': list(range(1, 10))
-    }
-    solution = solve(letters)
+    solution = solve()
     print_answer(solution)
