@@ -29,7 +29,19 @@ def solve(letters):
 
 def check_constraints(**letters):
     """Returns True if contraints are satisfied, False otherwise."""
-    pass
+    if letters['H'] * letters['H'] != letters['E']:
+        return False
+    if letters['A'] + letters['F'] != letters['G']:
+        return False
+    if letters['F'] * letters['H'] * letters['J'] != letters['A']:
+        return False
+    if letters['G'] + letters['H'] != letters['B']:
+        return False
+    if letters['F'] + letters['H'] != letters['J']:
+        return False
+    if letters['D'] - letters['C'] != letters['J']:
+        return False
+    return True
 
 def print_answer(letters):
     """Given a dict of (letter, digit) pairs, prints the solution."""
